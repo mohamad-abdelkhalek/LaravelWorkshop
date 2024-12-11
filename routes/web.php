@@ -12,6 +12,7 @@ Route::get('/welcome', action: [WelcomeController::class, 'welcome']);
 Route::get('/notes', action: [NoteController::class,'index']);
 Route::get('/notes/crsftoken', action: [NoteController::class,'crsftoken']);
 //CRUD
+Route::post('/notes', action: [NoteController::class,'store']);
 Route::get('/notes/{id}', action: [NoteController::class, 'show']);
 Route::put('/notes/{id}', action: [NoteController::class, 'update']);
 Route::delete('/notes/{id}', action: [NoteController::class,'destroy']);

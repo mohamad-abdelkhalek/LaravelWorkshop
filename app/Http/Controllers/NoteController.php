@@ -25,6 +25,12 @@ class NoteController extends Controller
         return response()->json($note);
     }
 
+    // Store = Create
+    public function store(Request $request){
+        $note = Note::create($request->all());
+        return response()->json($note);
+    }
+
     // Update Note
     public function update(Request $request, $id)
 {
