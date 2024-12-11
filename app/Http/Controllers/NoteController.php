@@ -20,4 +20,9 @@ class NoteController extends Controller
         return response()->json($note);
     }
 
+    // Update Note
+    function update(Request $request, $id){
+        return $id;
+    }
+
 }

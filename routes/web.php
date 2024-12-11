@@ -9,7 +9,9 @@ Route::get('/', [WelcomeController::class, 'index']);
 Route::get('/welcome', action: [WelcomeController::class, 'welcome']);
 Route::get('/notes', action: [NoteController::class,'index']);
 
+//CRUD
 Route::get('/notes/{id}', action: [NoteController::class, 'show']);
+Route::put('/notes/{id}', action: [NoteController::class, 'update']);
 
 // Static route
 Route::get('/home', function () {
