@@ -14,6 +14,7 @@ Route::get('/notes/crsftoken', action: [NoteController::class,'crsftoken']);
 //CRUD
 Route::get('/notes/{id}', action: [NoteController::class, 'show']);
 Route::put('/notes/{id}', action: [NoteController::class, 'update']);
+Route::delete('/notes/{id}', action: [NoteController::class,'destroy']);
 
 // Static route
 Route::get('/home', function () {

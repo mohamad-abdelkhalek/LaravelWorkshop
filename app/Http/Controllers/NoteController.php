@@ -45,5 +45,9 @@ class NoteController extends Controller
     return response()->json($note);
 }
 
-
+    // Delete - Destroy
+    public function destroy($id){
+        $note = Note::destroy($id);
+        return response()->json($note);
+    }
 }
