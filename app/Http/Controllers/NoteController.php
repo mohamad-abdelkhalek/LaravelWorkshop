@@ -26,8 +26,24 @@ class NoteController extends Controller
     }
 
     // Update Note
-    function update(Request $request, $id){
-        return $id;
+    public function update(Request $request, $id)
+{
+    // Validate request data
+    $validatedData = $request->all();
+
+    // Find the note by ID
+    $note = Note::find($id);
+
+    if (!$note) {
+        return response()->json(['error' => 'Note not found'], 404);
     }
+
+    // Update the note
+    $note->update($validatedData);
+
+    // Return the updated note as JSON
+    return response()->json($note);
+}
+
 
 }
