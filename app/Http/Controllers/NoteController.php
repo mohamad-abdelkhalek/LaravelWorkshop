@@ -8,6 +8,11 @@ class NoteController extends Controller
 {
     //
 
+    public function crsftoken()
+    {
+        return csrf_token();
+    }
+
     // All Notes
     function index()
     {
