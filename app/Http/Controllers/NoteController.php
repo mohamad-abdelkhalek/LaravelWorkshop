@@ -1,73 +1,65 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
+
 use App\Models\Note;
+use Illuminate\Http\Request;
 
 class NoteController extends Controller
 {
-    //
-
-    public function crsftoken()
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
     {
-        return csrf_token();
+        //
     }
 
-    // All Notes
-    function index()
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
-        return response()->json(Note::all());
+        //
     }
 
-    // One Note
-    function show(Request $request){
-        $note = Note::find($request->id);
-        return response()->json($note);
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
     }
 
-    // Store = Create
-    public function store(Request $request){
-        $note = Note::create($request->all());
-        return response()->json($note);
+    /**
+     * Display the specified resource.
+     */
+    public function show(Note $note)
+    {
+        //
     }
 
-    // Update Note
-    public function update(Request $request, $id)
-{
-    // Validate request data
-    $validatedData = $request->all();
-
-    // Find the note by ID
-    $note = Note::find($id);
-
-    if (!$note) {
-        return response()->json(['error' => 'Note not found'], 404);
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Note $note)
+    {
+        //
     }
 
-    // Update the note
-    $note->update($validatedData);
-
-    // Return the updated note as JSON
-    return response()->json($note);
-}
-
-    // Delete - Destroy
-public function destroy($id){
-    $note = Note::find($id);
-
-    if (!$note) {
-        return response()->json([
-            'success' => false,
-            'message' => 'Note not found.'
-        ], 404);
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Note $note)
+    {
+        //
     }
 
-    $deleted = $note->delete();
-
-    return response()->json([
-        'success' => $deleted,
-        'message' => $deleted ? 'Note deleted successfully.' : 'Failed to delete note.'
-    ]);
-}
-
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Note $note)
+    {
+        //
+    }
 }
