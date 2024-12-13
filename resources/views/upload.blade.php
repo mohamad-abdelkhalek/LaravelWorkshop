@@ -1,10 +1,9 @@
 <x-bootLayout>
 
     @if (@session()->has('success'))
-    <div class="alert alert-primary" role="alert">
-        {{session()->get('success')}}
-    </div>        
-        
+        <div class="alert alert-primary" role="alert">
+            {{ session()->get('success') }}
+        </div>
     @endif
     <div class="container my-4">
         <h2 class="mb-4">Upload a File</h2>
