@@ -13,6 +13,7 @@ class NoteController extends Controller
     public function index()
     {
         //
+        return "index";
     }
 
     /**
@@ -21,6 +22,25 @@ class NoteController extends Controller
     public function create()
     {
         //
+        return "create";
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Note $note)
+    {
+        //
+        return "show";
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Note $note)
+    {
+        //
+        return "edit";
     }
 
     /**
@@ -31,21 +51,7 @@ class NoteController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Note $note)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Note $note)
-    {
-        //
-    }
+    
 
     /**
      * Update the specified resource in storage.
