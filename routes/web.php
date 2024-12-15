@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\fileController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\NoteController; // Ensure NoteController is imported
@@ -32,3 +33,5 @@ Route::get('/mail', function () {
     return "Email was sent";
 });
 
+Route::get("/contact", [ContactUsController::class,'index'])->name('contact');
+Route::post("/contact/send", [ContactUsController::class,'store'])->name('contact.send');
