@@ -18,7 +18,7 @@ Route::get('/notes/crsftoken', action: [NoteController::class,'crsftoken']);
 
 //CRUD
 
-Route::resource('/note', NoteController::class);
+Route::resource('/notes', NoteController::class);
 
 // Static route
 Route::get('/home', function () {
