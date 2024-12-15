@@ -35,12 +35,21 @@
             </a>
         </div>
 
-        <!-- Card Body -->
+        <!-- Card Body with Note Content -->
         <div class="card-body">
-            <h5 class="card-title">Card Title</h5>
+            <!-- Display Note Title -->
+            <h5 class="card-title">{{ $note->title }}</h5>
+
+            <!-- Display Note Content -->
             <p class="card-text">
-                Some quick example text to build on the card title and make up the bulk of the card's content.
+                {{ $note->note }}
             </p>
+
+            <div class="card-footer d-flex justify-content-end gap-2">
+                <a href="{{ route('notes.index', $note) }}" class="btn btn-success btn-sm">Back</a>
+                <a href="{{ route('notes.edit', $note) }}" class="btn btn-primary btn-sm">Edit</a>
+                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+            </div>
         </div>
     </div>
 </x-bootLayout>
