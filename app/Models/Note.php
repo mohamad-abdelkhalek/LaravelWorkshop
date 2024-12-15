@@ -16,4 +16,8 @@ class Note extends Model
         'note',
         "user_id"
     ];
+
+    protected $casts = [
+        "images"=> "array",
+    ];
 }
