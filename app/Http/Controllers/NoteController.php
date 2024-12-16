@@ -48,18 +48,36 @@ class NoteController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'note' => 'required|string',
-            'user_id' => 'required|exists:users,id',
-             'images.*' => 'required|array|mimes:jpeg,png,jpg,gif|max:1024'
-        ]);
+{
+    // Validate input data
+    $data = $request->validate([
+        'title' => 'required|string|max:255',
+        'note' => 'required|string',
+        'user_id' => 'required|exists:users,id',
+        'images' => 'required|array',
+        'images.*' => 'file|mimes:jpeg,png,jpg,gif|max:1024', // Validation for each image
+    ]);
 
-
-        
+    // Process and store images
+    $images = [];
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $image) {
+            $imageName = uniqid() . '_' . $image->getClientOriginalName(); // Prevent name collision
+            $image->storeAs('public/uploads', $imageName); // Store the image
+            $images[] = $imageName; // Save file name in array
+        }
     }
+
+    // Add images to data
+    $data['images'] = json_encode($images);
+
+    // Create the note
+    $note = Note::create($data);
+
+    // Return the created note or redirect
+    return redirect()->route('notes.show', $note);
+}
+
 
     
 
