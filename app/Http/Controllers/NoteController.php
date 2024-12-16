@@ -60,7 +60,15 @@ class NoteController extends Controller
     public function update(Request $request, Note $note)
     {
         //
-        $note->update($request->all());
+        $images = [];
+        foreach($request->file('images') as $image){
+            $imageName = uniqid(time()).'.'.$image->getClientOriginalName();
+            $image->storeAs('public/uploads', $imageName);
+            $images[] = $imageName;
+        }
+
+        $update_data = ['title' => $request->title, 'note' => $request->note, 'image' => $images];
+        $note->update($update_data);
         return redirect()->route("notes.show", $note);
     }
 

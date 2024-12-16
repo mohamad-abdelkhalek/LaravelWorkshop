@@ -13,6 +13,10 @@
                     <label for="exampleFormControlTextarea1" class="form-label">Note Body</label>
                     <textarea class="form-control" name="note" rows="3">{{ $note->note }}</textarea>
                 </div>
+                <div class="mb-3">
+                    <label for="formFileMultiple" class="form-label">Upload images</label>
+                    <input class="form-control" type="file" name="images[]" multiple>
+                </div>
                 <div class="col-auto">
                     <button type="submit" class="btn btn-primary mb-3">Update</button>
                 </div>
