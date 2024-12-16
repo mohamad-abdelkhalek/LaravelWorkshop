@@ -58,19 +58,39 @@ class NoteController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Note $note)
-    {
-        //
-        $images = [];
-        foreach($request->file('images') as $image){
-            $imageName = uniqid(time()).'.'.$image->getClientOriginalName();
+{
+    // Validate input
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'note' => 'required|string',
+        'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048' // Validate each uploaded image
+    ]);
+
+    $images = [];
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $image) {
+            // Generate a unique file name
+            $imageName = uniqid() . '.' . $image->extension();
+            // Store the file in 'public/uploads' directory
             $image->storeAs('public/uploads', $imageName);
             $images[] = $imageName;
         }
-
-        $update_data = ['title' => $request->title, 'note' => $request->note, 'image' => $images];
-        $note->update($update_data);
-        return redirect()->route("notes.show", $note);
     }
+
+    // Prepare update data
+    $update_data = [
+        'title' => $request->title,
+        'note' => $request->note,
+        'image' => json_encode($images) // Encode the images array as JSON for storage
+    ];
+
+    // Update the note
+    $note->update($update_data);
+
+    // Redirect to the show route
+    return redirect()->route("notes.show", $note)->with('success', 'Note updated successfully!');
+}
+
 
     /**
      * Remove the specified resource from storage.

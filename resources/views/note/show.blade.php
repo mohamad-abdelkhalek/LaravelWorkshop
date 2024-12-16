@@ -11,17 +11,17 @@
 
             <!-- Carousel Items -->
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="https://placehold.co/600x400" alt="First slide: Placeholder image">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://placehold.co/600x400/000000/FFFFFF/png"
-                        alt="Second slide: Placeholder image with white text">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://placehold.co/600x400?text=Hello+World"
-                        alt="Third slide: Placeholder with text Hello World">
-                </div>
+                @php
+                    $images = json_decode($note->images, true);
+                @endphp
+                @foreach ($images as $key => $image)
+                    <div class="carousel-item active {{ $key == 0 ? 'active' : '' }}">
+                        <img class="d-block w-100" src="{{ asset('storage/uploads') . '/' . $image }}"
+                            alt="First slide: Placeholder image">
+                    </div>
+                @endforeach
+
+
             </div>
 
             <!-- Controls -->
