@@ -13,7 +13,11 @@
                         <div class="card-footer d-flex justify-content-end gap-2">
                             <a href="{{ route('notes.show', $note) }}" class="btn btn-success btn-sm">View</a>
                             <a href="{{ route('notes.edit', $note) }}" class="btn btn-primary btn-sm">Edit</a>
-                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                            <form action="{{ route('notes.destroy', $note) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
                         </div>
                     </div>
                 </div>
