@@ -13,24 +13,33 @@ class RegisterController extends Controller
         return view("auth.register");
     }
 
-    public function store(Request $request){
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:8|confirmed'
-        ]);
+    public function store(Request $request)
+{
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required|email|unique:users',
+        'password' => 'required|min:8|confirmed'
+    ]);
 
-        $user = User::create([
-            'name'=> $request->name,
-            'email'=> $request->email,
-            'password'=> Hash::make($request->password)
-        ]);
+    // Create the user
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => Hash::make($request->password)
+    ]);
 
-        return to_route('home')->with('msh', 'user has created');
+    // Redirect to the home route, passing the user's ID
+    return redirect()->route('home', ['user' => $user->id])->with('msh', 'User has been created');
+}
 
-    }
 
-    public function show(User $user){
-        return view('home', ['user'=> $user]);
-    }
+
+
+public function show(User $user)
+{
+    return view('home', ['user' => $user]);
+}
+
+
+
 }
