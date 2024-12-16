@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -22,9 +22,9 @@ class LoginController extends Controller
         // Credentials
         $credentials = $request->only(["email","password"]);
 
-        // if attempt is true make auth
-
-        if(auth()->attempt($credentials)){
+        
+        $guard = Auth::guard();
+        if($guard->attempt($credentials)){
             // redirect to dashboard page
             return redirect()->route('dashboard');
         }else{
