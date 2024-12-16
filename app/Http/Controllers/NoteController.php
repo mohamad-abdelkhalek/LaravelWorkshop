@@ -50,6 +50,15 @@ class NoteController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'note' => 'required|string',
+            'user_id' => 'required|exists:users,id',
+             'images.*' => 'required|array|mimes:jpeg,png,jpg,gif|max:1024'
+        ]);
+
+
+        
     }
 
     
@@ -63,7 +72,7 @@ class NoteController extends Controller
     $request->validate([
         'title' => 'required|string|max:255',
         'note' => 'required|string',
-        'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048' // Validate each uploaded image
+        'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:1024' // Validate each uploaded image
     ]);
 
     $images = [];
