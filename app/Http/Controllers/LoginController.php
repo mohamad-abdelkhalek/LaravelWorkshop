@@ -24,6 +24,7 @@ class LoginController extends Controller
 
         
         $guard = Auth::guard();
+
         if($guard->attempt($credentials)){
             // redirect to dashboard page
             return redirect()->route('dashboard');
@@ -31,4 +32,6 @@ class LoginController extends Controller
             return redirect()->route('auth.login')->with('error','Invalid login credentials');
         }
     }
+
+    
 }

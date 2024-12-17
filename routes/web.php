@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\fileController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\NoteController; // Ensure NoteController is imported
@@ -25,7 +26,7 @@ Route::get('register', [RegisterController::class,'create'])->name('register');
 Route::post('register/store', [RegisterController::class,'store'])->name('register.store');
 Route::get('home/{user}', [RegisterController::class, 'show'])->name('home');
 
-
+Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
 
 // Static route
 // Route::get('/home', function () {
