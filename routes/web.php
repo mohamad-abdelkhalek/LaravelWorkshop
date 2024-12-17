@@ -27,16 +27,17 @@ Route::get('register', [RegisterController::class,'create'])->name('register');
 Route::post('register/store', [RegisterController::class,'store'])->name('register.store');
 Route::get('home/{user}', [RegisterController::class, 'show'])->name('home');
 
-Route::get('login', [LoginController::class,'create'])->name('login');
-Route::post('login/store', [LoginController::class,'store'])->name('login.store');
+Route::get('login', [LoginController::class, 'create'])->name('login');
+Route::post('login/store', [LoginController::class, 'store'])->name('login.store');
 
-
+// Group of routes that require the user to be authenticated
 Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('profile', [DashboardController::class, 'profile'])->name('profile');
     Route::post('profile/update', [DashboardController::class, 'profileUpdate'])->name('profile.update');
 
-    Route::get('logout', [DashboardController::class, 'logout'])->name('dashboard.logout');
+    // Logout route using POST
+    Route::post('logout', [DashboardController::class, 'logout'])->name('dashboard.logout');
 });
 
 

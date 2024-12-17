@@ -9,16 +9,17 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="dashboard">Dashboard</a>
+                        <a class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="profile">Profile</a>
+                        <a class="nav-link {{ request()->is('profile') ? 'active' : '' }}" href="{{ route('profile') }}">Profile</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <a href="{{ route('dashboard.logout') }}" class="btn btn-outline-danger" aria-label="Logout">
+                <form class="d-flex" method="POST" action="{{ route('dashboard.logout') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-outline-danger" aria-label="Logout">
                         Logout
-                    </a>
+                    </button>
                 </form>
             </div>
         </div>
