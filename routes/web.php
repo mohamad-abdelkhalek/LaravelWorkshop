@@ -33,6 +33,9 @@ Route::post('login/store', [LoginController::class,'store'])->name('login.store'
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('profile', [DashboardController::class, 'profile'])->name('profile');
+    Route::post('profile/update', [DashboardController::class, 'profileUpdate'])->name('profile.update');
+
     Route::get('logout', [DashboardController::class, 'logout'])->name('dashboard.logout');
 });
 

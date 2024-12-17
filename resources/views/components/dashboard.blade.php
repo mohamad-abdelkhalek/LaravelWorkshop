@@ -9,10 +9,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('dashboard') }}">Dashboard</a>
+                        <a class="nav-link active" href="dashboard">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Profile</a>
+                        <a class="nav-link active" href="profile">Profile</a>
                     </li>
                 </ul>
                 <form class="d-flex">
@@ -42,4 +42,9 @@
             </div>
         </div>
     </div>
+
+    <div class="container mt-5">
+        {{ $slot }}
+    </div>
+
 </x-bootLayout>
